@@ -17,3 +17,4 @@ def get_pokemons(html: str) -> list:
         japan = elements[6].css('::text').get().strip()
         pokemons.append(Pokemon(name, type1, type2, english, japan))
     return pokemons
+
