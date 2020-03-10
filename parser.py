@@ -1,5 +1,11 @@
+import requests
 from parsel import Selector
+
 from pokemon import Pokemon
+
+BASE_URL = 'https://pokemon.fandom.com/ru/wiki/Поколение_I'
+resp1 = requests.get(BASE_URL)
+resp2 = requests.get(BASE_URL + 'I')
 
 
 def get_pokemons(html: str) -> list:
@@ -15,6 +21,10 @@ def get_pokemons(html: str) -> list:
             type2 = type2.strip()
         english = elements[5].css('::text').get().strip()
         japan = elements[6].css('::text').get().strip()
-        pokemons.append(Pokemon(name, type1, type2, english, japan))
-    return pokemons
+        if html == str(resp1.text):
+            url = str(BASE_URL)
+        else:
+            url = str(BASE_URL + 'I')
 
+        pokemons.append(Pokemon(name, type1, type2, english, japan, url))
+    return pokemons
