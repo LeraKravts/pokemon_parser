@@ -17,14 +17,17 @@ def get_pokemons(html: str) -> list:
         name = elements[2].css('a::text').get().strip()
         type1 = elements[3].css('a::text').get().strip()
         type2 = elements[4].css('a::text').get()
+
         if type2 is not None:
             type2 = type2.strip()
         english = elements[5].css('::text').get().strip()
         japan = elements[6].css('::text').get().strip()
+
         if html == str(resp1.text):
             url = str(BASE_URL)
         else:
             url = str(BASE_URL + 'I')
 
         pokemons.append(Pokemon(name, type1, type2, english, japan, url))
+
     return pokemons
