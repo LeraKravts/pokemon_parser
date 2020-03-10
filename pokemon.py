@@ -7,4 +7,5 @@ class Pokemon:
         self.japan = japan
 
     def __str__(self):
-        return '{self.name},{self.type1},{self.type2},{self.english},{self.japan}'.format(self=self)
+        return '{self.name},{self.type1},{self.type2}, \
+        {self.english},{self.japan}'.format(self=self)
