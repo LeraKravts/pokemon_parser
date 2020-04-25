@@ -6,7 +6,7 @@ if __name__ == '__main__':
     conn = psycopg2.connect(host='0.0.0.0',
                             port=5432,
                             user='postgres',
-                            password='secret',
+                            password=' ',
                             )
 
     parser = argparse.ArgumentParser()
