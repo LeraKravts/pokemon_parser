@@ -8,6 +8,14 @@ class Pokemon:
         self.japan = japan
         self.url = url
 
+    def get_map(self):
+        return {'name': self.name,
+                'type1': self.type1,
+                'type2': self.type2,
+                'english': self.english,
+                'japan': self.japan,
+                'url': self.url}
+
     def __str__(self):
 
         return '{self.name},{self.type1},{self.type2}, \
