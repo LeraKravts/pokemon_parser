@@ -5,7 +5,7 @@ import pandas as pd
 conn = psycopg2.connect(host='0.0.0.0',
                         port=5432,
                         user='postgres',
-                        password='secret',
+                        password=' ',
                         )
 
 # create_query = """
