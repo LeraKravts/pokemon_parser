@@ -22,13 +22,6 @@ conn = psycopg2.connect(host='0.0.0.0',
 # with conn.cursor() as cur:
 #     cur.execute(create_query)
 
-# def select_all_pokemons():
-#     with conn.cursor() as cur:
-#         cur.execute('SELECT * FROM my_pokemons')
-#         resp = cur.fetchall()
-#         print(resp)
-
-
 table = pd.read_csv('pokemons.csv', header=None)
 
 table.columns = ['Russian', 'Type1', 'Type2', 'English', 'Japan', 'Url']

@@ -28,6 +28,5 @@ def get_pokemons(html: str) -> list:
         else:
             url = str(BASE_URL + 'I')
 
-        pokemons.append(Pokemon(name, type1, type2, english, japan, url))
-
+        pokemons.append(Pokemon(name, type1, type2, english, japan, url).__dict__)
     return pokemons

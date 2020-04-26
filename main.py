@@ -1,9 +1,7 @@
 import os
 
-from parser import get_pokemons
-# from save_to_dataframe2 import save_pokemons
-from save import save_pokemons
-from parser import resp1, resp2
+from engine import get_pokemons, resp1, resp2
+from save_to_json import save_pokemons
 
 
 PATH_SAVE_DIR = '/Users/valeriya/Desktop/'
@@ -16,8 +14,6 @@ def main():
 
     save_pokemons(get_pokemons(resp1.text), PATH_SAVE_DIR)
     save_pokemons(get_pokemons(resp2.text), PATH_SAVE_DIR)
-    # save_pokemons(get_pokemons(resp1.text))
-    # save_pokemons(get_pokemons(resp2.text))
 
 
 if __name__ == '__main__':
