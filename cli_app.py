@@ -25,5 +25,3 @@ if __name__ == '__main__':
     with conn.cursor() as cur:
         cur.execute(f'{args.select} {args.limit}')
         resp = cur.fetchall()
-        for elem in resp:
-            print(*elem)
