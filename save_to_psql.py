@@ -5,26 +5,29 @@ import pandas as pd
 conn = psycopg2.connect(host='0.0.0.0',
                         port=5432,
                         user='postgres',
-                        password=' ',
+                        password='secret',
                         )
 
-# create_query = """
-# CREATE TABLE my_pokemons (
-#     id SERIAL PRIMARY KEY,
-#     type1 varchar(100) NOT NULL,
-#     type2 varchar(100),
-#     name varchar(100) NOT NULL,
-#     english varchar(100) NOT NULL,
-#     japan varchar(100) NOT NULL,
-#     url varchar(100) NOT NULL
-# );
-# """
-# with conn.cursor() as cur:
-#     cur.execute(create_query)
+
+def make_db():
+    create_query = """
+    CREATE TABLE my_pokemons (
+        id SERIAL PRIMARY KEY,
+        type1 varchar(100) NOT NULL,
+        type2 varchar(100),
+        name varchar(100) NOT NULL,
+        english varchar(100) NOT NULL,
+        japan varchar(100) NOT NULL,
+        url varchar(100) NOT NULL
+    );
+    """
+    with conn.cursor() as cur:
+        cur.execute(create_query)
+
 
 table = pd.read_csv('pokemons.csv', header=None)
-
 table.columns = ['Russian', 'Type1', 'Type2', 'English', 'Japan', 'Url']
+
 type1 = table.Type1.unique()
 type2 = table.Type2.unique()
 name = table.Russian.unique()
@@ -39,3 +42,12 @@ with conn, conn.cursor() as cur:
            table.to_dict('records'),
            template='(%(Type1)s, %(Type2)s, %(Russian)s, %(English)s, %(Japan)s, %(Url)s)'
        )
+
+
+def main():
+    """Data is already loaded to Psql"""
+    pass
+
+
+if __name__ == '__main__':
+    main()

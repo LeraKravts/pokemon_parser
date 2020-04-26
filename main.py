@@ -4,7 +4,7 @@ from engine import get_pokemons, resp1, resp2
 from save_to_json import save_pokemons
 
 
-PATH_SAVE_DIR = '/Users/valeriya/Desktop/'
+PATH_SAVE_DIR = os.path.dirname(os.path.realpath(__file__)).replace("/", "\\") + "\\"
 
 
 def main():
