@@ -1,4 +1,3 @@
-
 class Pokemon:
     def __init__(self, name, type1, type2, english, japan, url):
         self.name = name
