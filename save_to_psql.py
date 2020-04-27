@@ -25,27 +25,27 @@ def make_db():
         cur.execute(create_query)
 
 
-table = pd.read_csv('pokemons.csv', header=None)
-table.columns = ['Russian', 'Type1', 'Type2', 'English', 'Japan', 'Url']
+def load_data_from_csv():
+    table = pd.read_csv('pokemons.csv', header=None)
+    table.columns = ['Russian', 'Type1', 'Type2', 'English', 'Japan', 'Url']
 
-type1 = table.Type1.unique()
-type2 = table.Type2.unique()
-name = table.Russian.unique()
-english = table.English.unique()
-japan = table.Japan.unique()
-url = table.Url
+    type1 = table.Type1.unique()
+    type2 = table.Type2.unique()
+    name = table.Russian.unique()
+    english = table.English.unique()
+    japan = table.Japan.unique()
+    url = table.Url
 
-with conn, conn.cursor() as cur:
-       execute_values(
-           cur,
-           'INSERT INTO my_pokemons(type1, type2, name, english, japan, url) VALUES %s',
-           table.to_dict('records'),
-           template='(%(Type1)s, %(Type2)s, %(Russian)s, %(English)s, %(Japan)s, %(Url)s)'
-       )
+    with conn, conn.cursor() as cur:
+        execute_values(
+            cur,
+            'INSERT INTO my_pokemons(type1, type2, name, english, japan, url) VALUES %s',
+            table.to_dict('records'),
+            template='(%(Type1)s, %(Type2)s, %(Russian)s, %(English)s, %(Japan)s, %(Url)s)'
+           )
 
 
 def main():
-    """Data is already loaded to Psql"""
     pass
 
 
