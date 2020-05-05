@@ -26,4 +26,3 @@ def collect_logs(metric_name):
             return result
         return wrapper
     return inner
-

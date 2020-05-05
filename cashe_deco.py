@@ -22,11 +22,3 @@ def save_cashe(time_in_sec):
             return result
         return wrapper
     return inner
-
-
-@save_cashe(5)
-def print_words(some_text):
-    print(some_text)
-    return len(some_text)
-
-
