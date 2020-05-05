@@ -2,12 +2,14 @@ import requests
 from parsel import Selector
 
 from pokemon import Pokemon
+from logger_deco import collect_logs
 
 BASE_URL = 'https://pokemon.fandom.com/ru/wiki/Поколение_I'
 resp1 = requests.get(BASE_URL)
 resp2 = requests.get(BASE_URL + 'I')
 
 
+@collect_logs('working time')
 def get_pokemons(html: str) -> list:
     sel = Selector(text=html)
     pokemon_table = sel.css('table[class="wikitable sortable"]')
@@ -30,3 +32,6 @@ def get_pokemons(html: str) -> list:
 
         pokemons.append(Pokemon(name, type1, type2, english, japan, url).__dict__)
     return pokemons
+
+
+get_pokemons(resp1.text)

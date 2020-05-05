@@ -7,7 +7,7 @@ if __name__ == '__main__':
     conn = psycopg2.connect(host='0.0.0.0',
                             port=5432,
                             user='postgres',
-                            password=' ',
+                            password='secret',
                             )
 
     parser = argparse.ArgumentParser()
@@ -25,3 +25,7 @@ if __name__ == '__main__':
     with conn.cursor() as cur:
         cur.execute(f'{args.select} {args.limit}')
         resp = cur.fetchall()
+        for elem in resp:
+            print(resp)
+
+
