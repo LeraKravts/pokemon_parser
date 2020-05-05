@@ -1,8 +1,9 @@
 import logging
 import sys
-from time import sleep, time
-from functools import wraps
 import os
+from time import time
+from functools import wraps
+
 
 logging.basicConfig(level=logging.INFO,
                     handlers=[
@@ -22,7 +23,8 @@ def collect_logs(metric_name):
             result = func(*args, **kwargs)
             time_finish = time()
             logger = logging.getLogger('working_time')
-            logger.info('{}: {}, func {}'.format(metric_name, time_finish - time_start, func.__name__))
+            logger.info('{}: {}, func: {}'.format(metric_name, time_finish - time_start, func.__name__))
+
             return result
         return wrapper
     return inner

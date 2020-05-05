@@ -1,4 +1,4 @@
-from time import time, sleep
+from time import time
 
 
 def save_cashe(time_in_sec):
