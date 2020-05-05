@@ -3,6 +3,7 @@ from parsel import Selector
 
 from pokemon import Pokemon
 from logger_deco import collect_logs
+from cashe_deco import save_cashe
 
 BASE_URL = 'https://pokemon.fandom.com/ru/wiki/Поколение_I'
 resp1 = requests.get(BASE_URL)
@@ -10,6 +11,7 @@ resp2 = requests.get(BASE_URL + 'I')
 
 
 @collect_logs('working time')
+@save_cashe(5)
 def get_pokemons(html: str) -> list:
     sel = Selector(text=html)
     pokemon_table = sel.css('table[class="wikitable sortable"]')
@@ -34,4 +36,4 @@ def get_pokemons(html: str) -> list:
     return pokemons
 
 
-get_pokemons(resp1.text)
+# get_pokemons = collect_logs('working_time')(save_cashe(5)(get_pokemons))  without sugar
