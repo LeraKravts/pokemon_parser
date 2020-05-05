@@ -2,11 +2,12 @@ import logging
 import sys
 from time import sleep, time
 from functools import wraps
+import os
 
 logging.basicConfig(level=logging.INFO,
                     handlers=[
                         logging.StreamHandler(stream=sys.stdout),
-                        logging.FileHandler('logs.log')
+                        logging.FileHandler(os.path.join(os.path.dirname(__file__), 'logs.log'))
                     ],
                     format='%(levelname)8s LINE: %(lineno)d %(asctime)s | %(module)s %(funcName)s | %(message)s',   # funcName wrapper
                     datefmt='%d/%b/%y %H:%M:%S'
@@ -26,11 +27,3 @@ def collect_logs(metric_name):
         return wrapper
     return inner
 
-
-@collect_logs('working_time')
-def mult(n1, n2):
-    sleep(4)
-    return n1+n2
-
-
-mult(4, 5)
