@@ -1,7 +1,7 @@
 import logging
 import sys
 import os
-from time import time
+from time import time, sleep
 from functools import wraps
 
 
@@ -28,3 +28,12 @@ def collect_logs(metric_name):
             return result
         return wrapper
     return inner
+
+
+@collect_logs('working time')
+def sleep_random(some_time):
+    sleep(some_time)
+    return 'hello'
+
+
+print(sleep_random(4))

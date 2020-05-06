@@ -1,24 +1,24 @@
 from time import time
 
 
-def save_cashe(time_in_sec):
+def save_cache(time_in_sec):
     def inner(func):
-        cashe_saver = dict()
+        cache_saver = dict()
 
         def wrapper(*args):
             currect_time = time()
             old_keys = []
-            for key in cashe_saver:
-                if currect_time - cashe_saver[key][1] > time_in_sec:
+            for key in cache_saver:
+                if currect_time - cache_saver[key][1] > time_in_sec:
                     old_keys.append(key)
             for key in old_keys:
-                cashe_saver.pop(key)
+                cache_saver.pop(key)
 
-            if args in cashe_saver:
-                result = cashe_saver[args]
+            if args in cache_saver:
+                result = cache_saver[args]
             else:
                 result = func(*args)
-                cashe_saver[args] = [result, time()]
+                cache_saver[args] = [result, time()]
             return result
         return wrapper
     return inner
