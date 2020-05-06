@@ -36,4 +36,4 @@ def get_pokemons(html: str) -> list:
     return pokemons
 
 
-# get_pokemons = collect_logs('working_time')(save_cashe(5)(get_pokemons))  without sugar
+# get_pokemons = collect_logs('working_time')(save_cache(5)(get_pokemons))  without sugar

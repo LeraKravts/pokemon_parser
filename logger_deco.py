@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO,
                         logging.StreamHandler(stream=sys.stdout),
                         logging.FileHandler(os.path.join(os.path.dirname(__file__), 'logs.log'))
                     ],
-                    format='%(levelname)8s LINE: %(lineno)d %(asctime)s | %(module)s %(funcName)s | %(message)s',   # funcName wrapper
+                    format='%(levelname)8s LINE: %(lineno)d %(asctime)s | %(module)s %(funcName)s | %(message)s',
                     datefmt='%d/%b/%y %H:%M:%S'
                     )
 
@@ -28,12 +28,3 @@ def collect_logs(metric_name):
             return result
         return wrapper
     return inner
-
-
-@collect_logs('working time')
-def sleep_random(some_time):
-    sleep(some_time)
-    return 'hello'
-
-
-print(sleep_random(4))
